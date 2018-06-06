@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Vue.js editor sample</title>
+    <link rel="stylesheet"  href="../css/editor.css">
+  </head>
+  <body>
+
+
+    <div id="editor">
+      <textarea :value="input" @input="update"></textarea>
+      <div v-html="compiledMarkdown"></div>
+    </div>
+    <script src="https://unpkg.com/marked@0.3.6"></script>
+    <script src="https://unpkg.com/lodash@4.16.0"></script>
+    <script src="../lib/vue.js"></script>
+    <script src="editor.js"></script>
+  </body>
+</html>
