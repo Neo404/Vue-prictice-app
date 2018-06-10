@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script type="text/x-template" id="polygraph-template">
+      <g>
+        <polygon :points="points"></polygon>
+        <circle cx="100" cy="100" r="80"></circle>
+        <axis-label
+          v-for="(stat, index) in stats"
+          :stat="stat"
+          :index="index"
+          :total="stats.length">
+        </axis-label>
+      </g>
+    </script>
+    <script type="text/x-template" id="axis-label-template">
+      <text :x="point.x" :y="point.y">{{stat.label}}</text>
+    </script>
+    <div id="demo">
+      <svg width="200" height="200">
+        <polygraph :stats="stats"></polygraph>
+      </svg>
+      <div v-for="stat in stats">
+        <label>{{stat.label}}</label>
+        <input type="range" v-model="stat.value" min="0" max="100">
+        <span>{{stat.value}}</span>
+        <button @click="remove(stat)" class="remove"></button>
+      </div>
+      <form id="add">
+        <input name="newlabel" v-model="newLabel">
+        <button @click="add">Add a Stat</button>
+      </form>
+      <pre id="row">{{stats}}</pre>
+    </div>
+    <p style="font-size:12px">* input[type="range"] requires IE10 or above.</p>
+  </body>
+</html>
