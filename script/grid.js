@@ -28,6 +28,7 @@ Vue.component('demo-grid', {
           })
         })
       }
+      // nameとpowerにsearchQueryの単語でソートをかける
       if (sortKey) {
         data = data.slice().sort(function(a,b) {
           a = a[sortKey]
