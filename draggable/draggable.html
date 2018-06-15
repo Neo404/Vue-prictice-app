@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/draggable.css">
+  </head>
+  <body>
+    <script type="text/x-template" id="header-view-template">
+      <div class="draggable-header-view"
+        @mousedown="startDrag" @touchstart="startDrag"
+        @mousemove="onDrag" @touchmove="onDrag"
+        @mouseup="stopDrag" @touchend="stopDrag" @mouseleave="stopDrag">
+        <svg class="bg" width="320" height="560">
+          <path :d="headerPath" fill="#3F51B5">
+        </svg>
+        <div class="header">
+          <slot name="header"></slot>
+        </div>
+        <div class="content" style="contentPosition">
+          <slot name="content">
+        </div>
+      </div>
+    </script>
+    <div id="app" @touchmove.prevent>
+      <draggable-header-view>
+        <template slot-"header">
+          <h1>Elastic Draggable SVG Header</h1>
+          <p>with <a href="http://vuejs.org">Vue.js</a> + <a href="http:dynamicsjs.com">dynamics.js</a></p>
+        </template>
+        <template slot="content">
+          <p>Note this is just an effect demo - there are of course many additional details
+            if you want to use this in production, e.g. handling responsive sizes, reload threshold
+            and content scrolling. Those are out of scope for this quick little hack.
+            However, the idea is that you can</p>
+        </template>
+      </draggable-header-view>
+    </div>
+    <script src="../lib/vue.js"></script>
+    <script src="../script/draggable.js"></script>
+  </body>
+</html>
