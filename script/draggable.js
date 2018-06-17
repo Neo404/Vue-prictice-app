@@ -1,4 +1,4 @@
-Vue.component('daggable-header-view', {
+Vue.component('draggable-header-view', {
   template: '#header-view-template',
   data: function(){
     return {
@@ -9,9 +9,9 @@ Vue.component('daggable-header-view', {
   },
   computed: {
     headerPath: function(){
-      return 'M0,0 L320,0 320, 160' +
-        '0' + this.c.x + '.' + this.c.y +
-        ' 0.160'
+      return 'M0,0 L320,0 320,160' +
+        'Q' + this.c.x + ',' + this.c.y +
+        ' 0,160'
     },
     contentPosition: function(){
       var dy = this.c.y - 160
@@ -23,8 +23,8 @@ Vue.component('daggable-header-view', {
   },
   methods: {
     startDrag: function(e) {
-      e = e.changedTouches ? e.changeTouches[0] : e
-      this.draggable = true
+      e = e.changedTouches ? e.changedTouches[0] : e
+      this.dragging = true
       this.start.x = e.pageX
       this.start.y = e.pageY
     },
@@ -37,7 +37,7 @@ Vue.component('daggable-header-view', {
         this.c.y = 160 + dy / dampen
       }
     },
-    startDrag: function(){
+    stopDrag: function(){
       if (this.dragging){
         this.dragging = false
         dynamics.animate(this.c, {
